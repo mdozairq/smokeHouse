@@ -1,0 +1,20 @@
+<%- include("header") -%>
+
+    <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">Reviews</h2>
+                        <hr class="divider divider-light" />
+                    <%  for(var i=0; i<reviews.length; i++){ %>
+                        <h3><%= reviews[i].Pname %></h3>
+                        <p><%= reviews[i].Pemail %></p>
+                        <p class="text-white-75 mb-4"><%= reviews[i].Preview %></p>
+                    <% }; %>
+                        <a class="btn btn-light btn-xl" href="/#services">Get Started!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<%- include("footer") -%>
