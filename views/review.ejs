@@ -6,11 +6,13 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">Reviews</h2>
                         <hr class="divider divider-light" />
-                    <%  for(var i=0; i<reviews.length; i++){ %>
-                        <h3><%= reviews[i].Pname %></h3>
-                        <p><%= reviews[i].Pemail %></p>
-                        <p class="text-white-75 mb-4"><%= reviews[i].Preview %></p>
-                    <% }; %>
+                        
+                    <% reviews.forEach(function(post){ %>
+                        <h3><%= post.Pname %></h3>
+                        <p><%= post.Pemail %></p>
+                        <p class="text-white-75 mb-4">"<%= post.Preview %>"</p>
+                    <% }); %>
+
                         <a class="btn btn-light btn-xl" href="/#services">Get Started!</a>
                     </div>
                 </div>

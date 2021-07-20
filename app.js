@@ -7,7 +7,18 @@ const path = require("path");
 const fs = require("fs");
 const app = express();
 
-let reviews=[];
+let reviews=[{
+  Pname: 'Hozaifa',
+  Pemail: 'hozaifa99@yahoo.com',
+  Pphone: '9876543210',
+  Preview: 'Absolutely mind blowing experience. The nihari along with the freshly out-of-the-oven tandoori rotis are a must try . The various selections of different kebabs are also quite phenomenal and the coffee in the end is a must try. Certainly a must-visit place if you crave heart warming food especially during these cold winters.\r\n'
+},{
+  Pname: 'Ozair',
+  Pemail: 'ozair69@rediffmail.com',
+  Pphone: '9988776655',
+  Preview: 'It was awesome experience and wonderful food. I strongly recommend you once visit and eat here.'
+}
+];
 
 app.set('view engine', 'ejs');
 
@@ -19,18 +30,20 @@ app.get("/", function(req, res){
 });
 
 
+app.get("/review", function(req, res){
+	console.log(reviews);
+	res.render("review", {reviews:reviews});
+	res.render("review", reviews)
+});
+
 app.post("/", function(req, res){
 	console.log(req.body);
   const post = {Pname: req.body.Name, Pemail: req.body.Email,Pphone: req.body.Phone, Preview: req.body.Message };
   if(post.Pname != '' && post.Preview !='')
   reviews.push(post);
-  res.redirect("review");
+  res.redirect("/");
 });
 
-app.get("/review", function(req, res){
-	//console.log(reviews);
-	res.render("review", {reviews:reviews});
-});
 
 app.get("/admin", function(req, res){
 	//console.log(reviews);
