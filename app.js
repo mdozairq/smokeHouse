@@ -20,20 +20,23 @@ let reviews=[{
 }
 ];
 
+let filenames=['1.jpg', '2.jpeg', '3.jpg', '4.jpg', '5.jpg', '6.jpeg'];
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res){
-	res.render("home");
+	//console.log(filenames);
+	res.render("home", {image: filenames});
 });
 
 
 app.get("/review", function(req, res){
-	console.log(reviews);
+	//console.log(reviews);
 	res.render("review", {reviews:reviews});
-	res.render("review", reviews)
+	//res.render("review", reviews)
 });
 
 app.post("/", function(req, res){
@@ -111,9 +114,11 @@ app.post("/admin", function(req, res){
 			});
 		}
 		else{
-			res.render("home", {
+			filenames.push(req.file.filename);
+			console.log(filenames);
+			res.render("admin", {
 				msg: "File Uploaded",
-				image: `assets/img/portfolio/thumbnails/${req.file.filename}`
+				//image: `assets/img/portfolio/thumbnails/${req.file.filename}`
 			});
 		}
 	}
